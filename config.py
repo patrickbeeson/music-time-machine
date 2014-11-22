@@ -13,6 +13,7 @@ class Config(object):
 class DevelopmentConfig(Config):
     DEBUG = True
     TESTING = False
+    SQLALCHEMY_DATABASE_URI = 'postgresql://pbeeson_madlibs:PortlandOR@localhost/madlibs'
 
 
 class ProductionConfig(Config):
