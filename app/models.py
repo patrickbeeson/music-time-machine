@@ -1,4 +1,10 @@
-from . import db
+from marshmallow import Schema, fields
+from flask.ext.sqlalchemy import SQLAlchemy
+from . import app
+
+app.config['SQLALCHEMY_DATABASE_URI']
+db = SQLAlchemy(app)
+
 
 class Artist(db.Model):
     """
@@ -15,6 +21,15 @@ class Artist(db.Model):
     def __repr__(self):
         return '<Artist {}>'.format(self.name)
 
+
+class ArtistSchema(Schema):
+    name = fields.String()
+    discog_url = fields.Url()
+
+
+artist_serializer = ArtistSchema()
+
+
 class Activity(db.Model):
     """
     An activity, such as cycling or driving.
@@ -22,10 +37,10 @@ class Activity(db.Model):
     __tablename__ = 'activities'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True)
-    artists = db.relationship('Artist', backref='activity')
+    artists = db.relationship('Artist', backref='activity', lazy='dynamic')
 
     def __repr__(self):
-        return '<Activity {}>'.format(self.name)
+        return '{}'.format(self.name)
 
 
 class Location(db.Model):
@@ -36,10 +51,10 @@ class Location(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     city = db.Column(db.String(100), unique=True)
     state = db.Column(db.String(2))
-    artists = db.relationship('Artist', backref='location')
+    artists = db.relationship('Artist', backref='location', lazy='dynamic')
 
     def __repr__(self):
-        return '<Location {}, {}>'.format(self.city, self.state)
+        return '{}, {}'.format(self.city, self.state)
 
 class Emotion(db.Model):
     """
@@ -48,7 +63,7 @@ class Emotion(db.Model):
     __tablename__ = 'emotions'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), unique=True)
-    artists = db.relationship('Artist', backref='emotion')
+    artists = db.relationship('Artist', backref='emotion', lazy='dynamic')
 
     def __repr__(self):
-        return '<Emotion {}>'.format(self.name)
+        return '{}'.format(self.name)

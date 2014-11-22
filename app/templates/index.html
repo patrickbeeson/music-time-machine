@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Madlibs Music</title>
+    </head>
+    <body>
+    {% if form.errors %}
+        Please fill something out!
+    {% endif %}
+{% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+        <form method="POST" class="form-inline" role="form">
+            {{ form.csrf_token }}
+            When Patrick was living in
+            <div class="form-group">
+                {{ form.locations }}
+            </div>
+            ,
+            <div class="form-group">
+                {{ form.activities }}
+            </div>
+            and feeling
+            <div class="form-group">
+                {{ form.emotions }}
+            </div>
+            these were his favorite artists.
+            {{ form.submit }}
+        </form>
+        {% for artist in artists %}
+            {{ artist.name }}
+        {% endfor %}
+         <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src={{ url_for('static', filename='main.js') }}></script>
+    </body>
+</html>
