@@ -13,6 +13,7 @@ ADMINS = app.config['ADMINS']
 MAIL_SERVER = app.config['MAIL_SERVER']
 MAIL_USERNAME = app.config['MAIL_USERNAME']
 MAIL_PASSWORD = app.config['MAIL_PASSWORD']
+SERVER_EMAIL_ADDRESS = app.config['SERVER_EMAIL_ADDRESS']
 
 credentials = (
     MAIL_USERNAME,
@@ -29,7 +30,7 @@ if not app.debug:
     app.logger.addHandler(file_handler)
     mail_handler = SMTPHandler(
         MAIL_SERVER,
-        'someemail@email.com',
+        SERVER_EMAIL_ADDRESS,
         ADMINS,
         'An error has occured',
         credentials=credentials
