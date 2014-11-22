@@ -1,6 +1,7 @@
 import logging
 from logging.handlers import RotatingFileHandler, SMTPHandler
 from flask import Flask
+from flask.ext.sqlalchemy import SQLAlchemy
 import os
 
 app = Flask(__name__)
@@ -14,6 +15,10 @@ MAIL_SERVER = app.config['MAIL_SERVER']
 MAIL_USERNAME = app.config['MAIL_USERNAME']
 MAIL_PASSWORD = app.config['MAIL_PASSWORD']
 SERVER_EMAIL_ADDRESS = app.config['SERVER_EMAIL_ADDRESS']
+SQLALCHEMY_DATABASE_URI = app.config['SQLALCHEMY_DATABASE_URI']
+SECRET_KEY = app.config['SECRET_KEY']
+
+db = SQLAlchemy(app)
 
 credentials = (
     MAIL_USERNAME,

@@ -8,6 +8,7 @@ class Config(object):
     MAIL_USE_SSL = True
     ADMINS = ['patrickbeeson@gmail.com']
     SERVER_EMAIL_ADDRESS = 'noreply@patrickbeeson.com'
+    SECRET_KEY = "\xce0\x95I\x99o\x12\x97\xd6\x85\xdf\xb8z\x03\x13\xc8'?\xeb\xcc\xfb\xe9\xf4\xe5"
 
 
 class DevelopmentConfig(Config):
