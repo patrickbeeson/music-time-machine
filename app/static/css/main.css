@@ -1,0 +1,40 @@
+/* Main CSS */
+
+body {
+    padding-top: 25px;
+    background-color: #f2ecfd;
+    font-family: 'VT323', Courier, sans-serif !important;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+a {
+    color: #5d4e76
+}
+form {
+    line-height: 3em;
+}
+input[type="submit"] {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 25% !important;
+    background-color: #5d4e76 !important;
+}
+.alert {
+    background-color: #5d4e76 !important;
+    color: white !important;
+}
+@media (max-width: 768px) {
+    body {
+        text-align: center;
+    }
+    .form-control {
+        background-color: #3e3e3e !important;
+    }
+    select {
+        color: white !important;
+        text-align: center !important;
+    }
+    .form-group {
+        display: inline !important;
+    }
+}

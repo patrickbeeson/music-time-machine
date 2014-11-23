@@ -4,37 +4,61 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Madlibs Music</title>
+        <link href='http://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
+        <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+        <title>Music time machine</title>
     </head>
     <body>
-    {% if form.errors %}
-        Please fill something out!
-    {% endif %}
-{% for message in get_flashed_messages() %}
-    <div class=flash>{{ message }}</div>
-  {% endfor %}
-        <form method="POST" class="form-inline" role="form">
-            {{ form.csrf_token }}
-            When Patrick was living in
-            <div class="form-group">
-                {{ form.locations }}
-            </div>
-            ,
-            <div class="form-group">
-                {{ form.activities }}
-            </div>
-            and feeling
-            <div class="form-group">
-                {{ form.emotions }}
-            </div>
-            these were his favorite artists.
-            {{ form.submit }}
-        </form>
-        {% for artist in artists %}
-            {{ artist.name }}
+        <div class="container">
+        {% block content %}
+        {% if form.errors %}
+        <div role="alert" class="alert alert-warning alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <strong>Warning!</strong> To see Patrick's favorite artists, you have to select some criteria first!
+        </div>
+        {% endif %}
+        {% for message in get_flashed_messages() %}
+        <div role="alert" class="alert alert-info alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <strong>Yo!</strong> {{ message }}
+        </div>
         {% endfor %}
-         <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script src={{ url_for('static', filename='main.js') }}></script>
+            <h1>Music Time Machine</h1>
+            <form method="POST" class="form-inline" role="form">
+                {{ form.csrf_token }}
+                When Patrick was living in
+                <div class="form-group">
+                    {{ form.locations(class_="form-control") }}
+                </div>
+                doing this thing
+                <div class="form-group">
+                    {{ form.activities(class_="form-control") }}
+                </div>
+                and feeling
+                <div class="form-group">
+                    {{ form.emotions(class_="form-control") }}
+                </div>
+                his playlist was like this.
+                {{ form.submit(class_="center-block btn btn-block btn-primary btn-lg") }}
+            </form>
+        {% if artists %}
+        <div class="artists panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Favorite artists for this period</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="artists_list">
+                {% for artist in artists %}
+                    <li><a href="{{ artist.discog_url }}">{{ artist.name }}</a></li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+        {% endblock content %}
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     </body>
 </html>
