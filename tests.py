@@ -15,6 +15,12 @@ class TestCase(unittest.TestCase):
         self.ctx = self.app.test_request_context()
         self.ctx.push()
 
+    def test_form_returns_query(self):
+        """
+        Test form query returns expected list.
+        """
+        pass
+
     def tearDown(self):
         self.ctx.pop()
 

@@ -1,4 +1,3 @@
-from marshmallow import Schema, fields
 from flask.ext.sqlalchemy import SQLAlchemy
 from . import app
 
@@ -20,14 +19,6 @@ class Artist(db.Model):
 
     def __repr__(self):
         return '<Artist {}>'.format(self.name)
-
-
-class ArtistSchema(Schema):
-    name = fields.String()
-    discog_url = fields.Url()
-
-
-artist_serializer = ArtistSchema()
 
 
 class Activity(db.Model):

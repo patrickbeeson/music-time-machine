@@ -5,7 +5,7 @@ from flask import render_template, jsonify, flash
 
 from . import app
 from .forms import ArtistForm
-from .models import Artist, ArtistSchema
+from .models import Artist
 
 app.config.from_object(os.environ['APP_SETTINGS'])
 
@@ -22,11 +22,11 @@ def index():
         activity = form.activities.data
         emotion = form.emotions.data
         artists = Artist.query.filter_by(location=location).filter_by(activity=activity).filter_by(emotion=emotion).all()
-        #serializer = ArtistSchema(many=True)
-        #result = serializer.dump(artists)
-        #return jsonify({'artists': result.data})
+        if not location and not activity and not emotion:
+            artists = Artist.query.all()
+            artist_list = Artist.query.all()
         if artists:
-            return render_template('index.html', form=form, artists=artists)
+            return render_template('index.html', form=form, artist_list=artist_list, artists=artists)
         else:
             flash('This combination of things never happened. Try again.')
             return render_template('index.html', form=form)

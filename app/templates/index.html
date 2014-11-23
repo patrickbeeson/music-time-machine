@@ -45,7 +45,7 @@
         {% if artists %}
         <div class="artists panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Favorite artists for this period</h3>
+                <h3 class="panel-title">{% if artist_list %}All artists{% else%}Favorite artists for this period{% endif %}</h3>
             </div>
             <div class="panel-body">
                 <ul class="artists_list">
@@ -60,5 +60,6 @@
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     </body>
 </html>
