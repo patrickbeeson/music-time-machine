@@ -1,4 +1,4 @@
-flask-boilerplate
+music time machine
 =================
 
-A boilerplate Flask project for easier deployment.
+Explore my favorite musical artists with this simple Flask app.
