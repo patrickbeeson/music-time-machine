@@ -24,9 +24,8 @@ def index():
         artists = Artist.query.filter_by(location=location).filter_by(activity=activity).filter_by(emotion=emotion).all()
         if not location and not activity and not emotion:
             artists = Artist.query.all()
-            artist_list = Artist.query.all()
         if artists:
-            return render_template('index.html', form=form, artist_list=artist_list, artists=artists)
+            return render_template('index.html', form=form, artists=artists)
         else:
             flash('This combination of things never happened. Try again. Or, select nothing to see all artists.')
             return render_template('index.html', form=form)
