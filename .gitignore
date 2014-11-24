@@ -55,3 +55,6 @@ target/
 
 # Mac
 *.DS_Store
+
+# Local app
+*config.py
