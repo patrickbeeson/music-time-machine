@@ -28,7 +28,7 @@ def index():
         if artists:
             return render_template('index.html', form=form, artist_list=artist_list, artists=artists)
         else:
-            flash('This combination of things never happened. Try again.')
+            flash('This combination of things never happened. Try again. Or, select nothing to see all artists.')
             return render_template('index.html', form=form)
     return render_template('index.html', form=form)
 

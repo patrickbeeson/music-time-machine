@@ -8,10 +8,19 @@ body {
     text-transform: uppercase;
 }
 a {
-    color: #5d4e76
+    color: #5d4e76;
+}
+a:hover {
+    color: #5d4e76;
 }
 form {
     line-height: 3em;
+}
+select {
+    color: white !important;
+}
+.form-control {
+    background-color: #3e3e3e !important;
 }
 input[type="submit"] {
     margin-top: 50px;
@@ -27,11 +36,7 @@ input[type="submit"] {
     body {
         text-align: center;
     }
-    .form-control {
-        background-color: #3e3e3e !important;
-    }
     select {
-        color: white !important;
         text-align: center !important;
     }
     .form-group {

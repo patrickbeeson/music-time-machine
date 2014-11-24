@@ -24,7 +24,7 @@
             <strong>Yo!</strong> {{ message }}
         </div>
         {% endfor %}
-            <h1>Music Time Machine</h1>
+            <h1><a href="/">Music Time Machine</a></h1>
             <form method="POST" class="form-inline" role="form">
                 {{ form.csrf_token }}
                 When Patrick was living in
@@ -58,6 +58,9 @@
         {% endif %}
         {% endblock content %}
         </div>
+        <footer class="text-center">
+            <p><small>See Patrick's top-five musical artists: Chrome: Cmd + Opt + J (Mac) / Firefox: Cmd + Opt + K (Mac)</small></p>
+        </footer>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
         <script src="{{ url_for('static', filename='js/main.js') }}"></script>

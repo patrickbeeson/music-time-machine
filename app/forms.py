@@ -1,7 +1,6 @@
 from flask.ext.wtf import Form
 from wtforms import SubmitField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
-#from wtforms.validators import DataRequired
 
 from .models import Location, Emotion, Activity
 
@@ -23,21 +22,18 @@ class ArtistForm(Form):
         'locations',
         blank_text='choose location',
         query_factory=get_locations,
-        allow_blank=True,
-        #validators=[DataRequired()]
+        allow_blank=True
     )
     emotions = QuerySelectField(
         'emotions',
         blank_text='choose emotion',
         query_factory=get_emotions,
-        allow_blank=True,
-        #validators=[DataRequired()]
+        allow_blank=True
     )
     activities = QuerySelectField(
         'activities',
         blank_text='choose activity',
         query_factory=get_activities,
-        allow_blank=True,
-        #validators=[DataRequired()]
+        allow_blank=True
     )
     submit = SubmitField('Submit')
